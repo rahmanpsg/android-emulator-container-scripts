@@ -96,17 +96,17 @@ generate_keys
 cp ~/.android/adbkey js/docker/certs
 
 # compose the container
-python -m venv .docker-venv
-source .docker-venv/bin/activate
-pip install docker-compose
-docker-compose -f ${DOCKER_YAML} build
+# python -m venv .docker-venv
+# source .docker-venv/bin/activate
+# pip install docker-compose
+docker compose -f ${DOCKER_YAML} build
 rm js/docker/certs/adbkey
 
 if [ "${START}" = "yes" ]; then
-    docker-compose -f ${DOCKER_YAML} up
+    docker compose -f ${DOCKER_YAML} up
 else
     echo "Created container, you can launch it as follows:"
-    echo "docker-compose -f ${DOCKER_YAML} up"
+    echo "docker compose -f ${DOCKER_YAML} up"
 fi
 
 if [ "${INSTALL}" = "yes" ]; then
